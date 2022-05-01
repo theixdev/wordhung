@@ -8,6 +8,7 @@ export const Game = () => {
     const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
     const [failedAttempts, setFailedAttempts] = useState<number>(0);
     const gameWindow = useRef<HTMLInputElement>(null);
+    let victory = false;
 
     useEffect(() => {
         setWord(RandomWords.data[Math.floor(Math.random() * RandomWords.data.length)]);     
@@ -15,9 +16,11 @@ export const Game = () => {
     }, [])
 
     const wordToArray = (word: string) => {
-        return word.split("");
+        let wordArray = word.split("");
+        victory = wordArray.every(val => guessedLetters.includes(val));
+        return wordArray;
     };
-
+ 
     const onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
         let letter = event.key;
         if (guessedLetters.indexOf(letter) === -1) {
@@ -36,7 +39,7 @@ export const Game = () => {
         gameWindow?.current?.focus();
     }
 
-    return (
+    return (    
         <div onKeyUp={onKeyUp} tabIndex={0} ref={gameWindow} className="focus:outline-none h-screen">
             <Word letterArray={wordToArray(word)} guessArray={guessedLetters} />
             <Hangman try={failedAttempts} />
@@ -46,7 +49,7 @@ export const Game = () => {
                     <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => {reset(e)}}>Try Again!</button>
                 </>
             )}
-            {wordToArray(word).every(val => guessedLetters.includes(val)) && (
+            {victory && (
                 <>
                     <div className="text-green-500 text-xl">You won!</div>
                     <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => {reset(e)}}>Play Again</button>

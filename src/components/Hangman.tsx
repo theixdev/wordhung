@@ -24,7 +24,7 @@ const Hangman = (props: IHangmanProps) => {
                     <path className="st0 hang" d="M145.34,13.47c0,18.07,0,36.14,0,54.22" />
                     <path className="st1 hang" d="M-164.23,158.03" />
                     {props.try > 0 && <ellipse className="st1 try1" cx="146.34" cy="91.17" rx="27.11" ry="23.48" />}
-                    {props.try > 1 && <path className="st1 try2" d="M-129.13,136.35" />}
+                    {props.try > 1 && <path className="st1 try2 " d="M-129.13,136.35" />}
                     {props.try > 2 && <path className="st1 try3" d="M146.34,162.05c0-15.8,0-31.6,0-47.4" />}
                     {props.try > 3 && <path className="st1 try4" d="M127.19,200.45c6.38-13.24,12.77-26.47,19.15-39.71" />}
                     {props.try > 4 && <path className="st1 try5" d="M179.23,194.87c-10.96-11.38-21.93-22.75-32.89-34.13" />}

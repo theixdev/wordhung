@@ -12,7 +12,7 @@ const Word = (props: ILetterProps) => {
 
     return (
         <>
-        {!!props.isGuessed ? <span className="pr-2 text-5xl">{props.letter}</span> : <span className="pr-2 text-5xl">_</span>}
+        {!!props.isGuessed ? <span className="pr-2 text-5xl animate-pulse">{props.letter}</span> : <span className="pr-2 text-5xl">_</span>}
         </>
     )
 }
