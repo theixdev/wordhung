@@ -33,9 +33,9 @@ const GameLogic = () => {
         }
     }, [failedAttempts])
 
-    const onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const onKeyUp = (input:string) => {
         if (status == GameStatus.InProgress) {
-            let letter = event.key.toLowerCase();
+            let letter = input.toLowerCase();
             if (guessedLetters.indexOf(letter) === -1) {
                 setGuessedLetters([...guessedLetters, letter]);
                 if (word.indexOf(letter) === -1) {

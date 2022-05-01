@@ -4,7 +4,7 @@ import Word from "./Word";
 import Button from "././Button";
 import { GameStatus } from "../types/Enums";
 import GameLogic from "./GameLogic";
-import Keyboard from 'react-simple-keyboard';
+import Keyboard, { KeyboardElement, KeyboardHandlerEvent, SimpleKeyboard } from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 
 export const Game = () => {
@@ -17,27 +17,21 @@ export const Game = () => {
         resetGame();
     }
 
-    const inputGuess = (event: React.MouseEvent) => {
-        event.preventDefault();
+
+    const keyClick = (button: string) => {
+        onKeyUp(button);
     }
 
     return (
         <>
-            <div onKeyUp={onKeyUp} tabIndex={0} ref={gameWindow} className="focus:outline-none h-screen">
-                <input
-                    style={{ height: "0px", width: "0px", opacity: "0" }}
-                    type="text"
-                    onKeyUp={onKeyUp}
-                    className="search_bar"
-                    ref={searchRef} />
-                <Word letterArray={wordArray} guessArray={guessedLetters} inputGuess={inputGuess} />
+            <div ref={gameWindow} className="focus:outline-none h-screen">
+                <Word letterArray={wordArray} guessArray={guessedLetters} />
                 <Hangman try={failedAttempts} gameStatus={status} />
                 {(() => {
                     switch (status) {
                         case GameStatus.InProgress:
                             return <div className="text-center text-2xl">
                                 <p>Guess the word!</p>
-                                <Button buttonText="Reset" handleClick={handleButtonClick} />
                             </div>
                         case GameStatus.Victory:
                             return <div className="text-center text-2xl">
@@ -51,8 +45,24 @@ export const Game = () => {
                             </div>
                     }
                 })()}
+                {status === GameStatus.InProgress && (
+                    <div className="max-w-[370px] m-auto">
+                        <Keyboard class="keyboard" onKeyPress={keyClick} layoutName="alphabet" theme={"hg-theme-default myTheme1"} 
+                            layout={{
+                                'alphabet': [
+                                    'Q W E R T Y U I O P',
+                                    'A S D F G H J K L ',
+                                    'Z X C V B N M {enter}',
+                                ]
+                            }} 
+                            buttonTheme={[{
+                                class: "buttonalt",
+                                buttons: "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
+                            }]} />
+                    </div>
+                )}
             </div>
-            {status === GameStatus.InProgress && <Keyboard onKeyPress={onKeyUp} ></Keyboard>}
+
         </>
     )
 }
