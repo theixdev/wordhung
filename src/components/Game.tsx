@@ -17,20 +17,15 @@ export const Game = () => {
         resetGame();
     }
 
-
-    const keyClick = (button: string) => {
-        onKeyUp(button);
-    }
-
     return (
         <>
-            <div ref={gameWindow} className="focus:outline-none h-screen">
+            <div ref={gameWindow} className="focus:outline-none h-screen flex flex-col">
                 <Word letterArray={wordArray} guessArray={guessedLetters} />
                 <Hangman try={failedAttempts} gameStatus={status} />
                 {(() => {
                     switch (status) {
                         case GameStatus.InProgress:
-                            return <div className="text-center text-2xl">
+                            return <div className="text-center text-2xl pb-2">
                                 <p>Guess the word!</p>
                             </div>
                         case GameStatus.Victory:
@@ -46,8 +41,8 @@ export const Game = () => {
                     }
                 })()}
                 {status === GameStatus.InProgress && (
-                    <div className="max-w-[370px] m-auto">
-                        <Keyboard class="keyboard" onKeyPress={keyClick} layoutName="alphabet" theme={"hg-theme-default myTheme1"} 
+                    <div className="max-w-[370px] w-full mx-auto mt-auto md:mt-4 pt-2 ">
+                        <Keyboard class="keyboard" onKeyPress={onKeyUp} layoutName="alphabet" theme={"hg-theme-default myTheme1"} 
                             layout={{
                                 'alphabet': [
                                     'Q W E R T Y U I O P',
