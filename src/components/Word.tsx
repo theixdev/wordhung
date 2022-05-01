@@ -14,7 +14,7 @@ const Word = (props: IWordlistProps) => {
     return (
         <div className="Word py-2 md:py-7" >
             {props.letterArray.map((char, index) => {
-                return <Letter key={index} letter={char} isGuessed={props.guessArray.indexOf(char) !== -1} />
+                return <Letter key={index} letter={char} isGuessed={props.guessArray.indexOf(char) != -1} />
             })}
         </div>
     )

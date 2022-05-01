@@ -33,8 +33,8 @@ const GameLogic = () => {
         }
     }, [failedAttempts])
 
-    const onKeyUp = (input:string) => {
-        if (status == GameStatus.InProgress) {
+    const makeGuess = (input:string) => {
+        if (status === GameStatus.InProgress) {
             let letter = input.toLowerCase();
             if (guessedLetters.indexOf(letter) === -1) {
                 setGuessedLetters([...guessedLetters, letter]);
@@ -44,7 +44,6 @@ const GameLogic = () => {
             }         
         }
     }
-
     const resetGame = () => {
         setWord(RandomWords.data[Math.floor(Math.random() * RandomWords.data.length)]);
         setGuessedLetters([]);
@@ -52,7 +51,7 @@ const GameLogic = () => {
         setStatus(GameStatus.InProgress);
         gameWindow?.current?.focus();
     }
-    return {resetGame, onKeyUp, gameWindow, guessedLetters, wordArray, status, failedAttempts};
+    return {resetGame, makeGuess, gameWindow, guessedLetters, wordArray, status, failedAttempts};
 
 }
 

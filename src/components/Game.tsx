@@ -9,7 +9,7 @@ import 'react-simple-keyboard/build/css/index.css';
 
 export const Game = () => {
 
-    const { resetGame, onKeyUp, gameWindow, guessedLetters, wordArray, status, failedAttempts } = GameLogic();
+    const { resetGame, makeGuess, gameWindow, guessedLetters, wordArray, status, failedAttempts } = GameLogic();
 
     const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
@@ -41,7 +41,7 @@ export const Game = () => {
                 })()}
                 {status === GameStatus.InProgress && (
                     <div className="max-w-[370px] w-full mx-auto mt-auto md:mt-4 pt-2 ">
-                        <Keyboard class="keyboard" onKeyPress={onKeyUp} layoutName="alphabet" theme={"hg-theme-default myTheme1"} 
+                        <Keyboard class="keyboard" onKeyPress={makeGuess} layoutName="alphabet" theme={"hg-theme-default myTheme1"} 
                             layout={{
                                 'alphabet': [
                                     'Q W E R T Y U I O P',
