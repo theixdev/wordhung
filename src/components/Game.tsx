@@ -25,15 +25,13 @@ export const Game = () => {
     return (
         <>
             <div onKeyUp={onKeyUp} tabIndex={0} ref={gameWindow} className="focus:outline-none h-screen">
-                <Word letterArray={wordArray} guessArray={guessedLetters} inputGuess={inputGuess} />
-                {status === GameStatus.InProgress && (
                 <input
                     style={{ height: "0px", width: "0px", opacity: "0" }}
                     type="text"
                     onKeyUp={onKeyUp}
                     className="search_bar"
                     ref={searchRef} />
-            )}
+                <Word letterArray={wordArray} guessArray={guessedLetters} inputGuess={inputGuess} />
                 <Hangman try={failedAttempts} />
                 {(() => {
                     switch (status) {
