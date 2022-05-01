@@ -15,19 +15,23 @@ export const Game = () => {
         resetGame();
     }
 
-    const inputGuess = (event: React.MouseEvent ) => {
+    const inputGuess = (event: React.MouseEvent) => {
         event.preventDefault();
-        searchRef.current?.focus();
+        if (status == GameStatus.InProgress) {
+            searchRef.current?.focus();
+        }
     }
 
     return (
         <>
-            <input
-                style={{height:"0px", width:"0px", opacity:"0"}}
-                type="text"
-                className="search_bar"
-                ref={searchRef}
-            />
+            {status === GameStatus.InProgress && (
+                <input
+                    style={{ height: "0px", width: "0px", opacity: "0" }}
+                    type="text"
+                    onKeyUp={onKeyUp}
+                    className="search_bar"
+                    ref={searchRef} />
+            )}
             <div onKeyUp={onKeyUp} tabIndex={0} ref={gameWindow} className="focus:outline-none h-screen">
                 <Word letterArray={wordArray} guessArray={guessedLetters} inputGuess={inputGuess} />
                 <Hangman try={failedAttempts} />
