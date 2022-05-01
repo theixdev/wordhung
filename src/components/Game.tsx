@@ -19,9 +19,6 @@ export const Game = () => {
 
     const inputGuess = (event: React.MouseEvent) => {
         event.preventDefault();
-        if (status == GameStatus.InProgress) {
-            searchRef.current?.focus();
-        }
     }
 
     return (
