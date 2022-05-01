@@ -2,8 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import Hangman from "./Hangman";
 import Word from "./Word";
 import Button from "././Button";
-import { GameStatus } from "../types/Enums"
-import GameLogic from "./GameLogic"
+import { GameStatus } from "../types/Enums";
+import GameLogic from "./GameLogic";
+import Keyboard from 'react-simple-keyboard';
+import 'react-simple-keyboard/build/css/index.css';
 
 export const Game = () => {
 
@@ -53,6 +55,7 @@ export const Game = () => {
                     }
                 })()}
             </div>
+            {status === GameStatus.InProgress && <Keyboard onKeyPress={onKeyUp} ></Keyboard>}
         </>
     )
 }
