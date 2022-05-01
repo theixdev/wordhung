@@ -13,14 +13,19 @@ const GameLogic = () => {
 
 
     useEffect(() => {
-        gameWindow?.current?.focus();
+        gameWindow.current?.focus();
     }, [])
 
     useEffect(() => {
         if (wordArray.every(val => guessedLetters.includes(val)) && !!word) {
             setStatus(GameStatus.Victory);
         }
+        console.log(guessedLetters);
     }, [guessedLetters])
+
+    useEffect(() => {
+       console.log(word);
+    }, [word])
 
     useEffect(() => {
         if (failedAttempts >= 7) {
@@ -35,9 +40,8 @@ const GameLogic = () => {
                 setGuessedLetters([...guessedLetters, letter]);
                 if (word.indexOf(letter) === -1) {
                     setFailedAttempts(failedAttempts + 1);
-
                 }
-            }
+            }         
         }
     }
 
