@@ -23,7 +23,7 @@ const GameLogic = () => {
     }, [guessedLetters])
 
     useEffect(() => {
-       console.log(word);
+        console.log(word);
     }, [word])
 
     useEffect(() => {
@@ -32,16 +32,17 @@ const GameLogic = () => {
         }
     }, [failedAttempts])
 
-    const makeGuess = (input:string) => {
-        if (status === GameStatus.InProgress) {
-            let letter = input.toUpperCase();
-            if (guessedLetters.indexOf(letter) === -1) {
-                setGuessedLetters([...guessedLetters, letter]);
-                if (word.indexOf(letter) === -1) {
-                    setFailedAttempts(failedAttempts + 1);
-                }
-            }         
+    const makeGuess = (input: string) => {
+        if (status != GameStatus.InProgress) { return }
+        
+        let letter = input.toUpperCase();
+        if (guessedLetters.indexOf(letter) === -1) {
+            setGuessedLetters([...guessedLetters, letter]);
+            if (word.indexOf(letter) === -1) {
+                setFailedAttempts(failedAttempts + 1);
+            }
         }
+
     }
     const resetGame = () => {
         setWord(RandomWords.data[Math.floor(Math.random() * RandomWords.data.length)].toUpperCase());
@@ -50,7 +51,7 @@ const GameLogic = () => {
         setStatus(GameStatus.InProgress);
         gameWindow?.current?.focus();
     }
-    return {resetGame, makeGuess, gameWindow, guessedLetters, wordArray, status, failedAttempts};
+    return { resetGame, makeGuess, gameWindow, guessedLetters, wordArray, status, failedAttempts };
 
 }
 
