@@ -1,60 +1,46 @@
 import React, { useEffect, useState, useRef } from "react";
 import Hangman from "./Hangman";
 import Word from "./Word";
+import Button from "././Button";
 import RandomWords from "../data/words.json"
+import { GameStatus } from "../types/Enums"
+import GameLogic from "./GameLogic"
 
 export const Game = () => {
-    const [word, setWord] = useState("");
-    const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
-    const [failedAttempts, setFailedAttempts] = useState<number>(0);
-    const gameWindow = useRef<HTMLInputElement>(null);
-    let victory = false;
 
-    useEffect(() => {
-        setWord(RandomWords.data[Math.floor(Math.random() * RandomWords.data.length)]);     
-        gameWindow?.current?.focus();
-    }, [])
+    const {resetGame, onKeyUp, gameWindow, guessedLetters, wordArray, status, failedAttempts } = GameLogic();
 
-    const wordToArray = (word: string) => {
-        let wordArray = word.split("");
-        victory = wordArray.every(val => guessedLetters.includes(val));
-        return wordArray;
-    };
- 
-    const onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        let letter = event.key;
-        if (guessedLetters.indexOf(letter) === -1) {
-            setGuessedLetters([...guessedLetters, letter]);
-            if (word.indexOf(letter) === -1) {
-                setFailedAttempts(failedAttempts + 1);
-            }
-        }
-    }
 
-    const reset = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
-        setWord(RandomWords.data[Math.floor(Math.random() * RandomWords.data.length)]);
-        setGuessedLetters([]);
-        setFailedAttempts(0);
-        gameWindow?.current?.focus();
+        resetGame();
     }
 
-    return (    
-        <div onKeyUp={onKeyUp} tabIndex={0} ref={gameWindow} className="focus:outline-none h-screen">
-            <Word letterArray={wordToArray(word)} guessArray={guessedLetters} />
-            <Hangman try={failedAttempts} />
-            {failedAttempts >= 7 && (
-                <>
-                    <div className="text-red-500 text-xl">You are dead. The word was <span className="underline">{word}</span></div>
-                    <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => {reset(e)}}>Try Again!</button>
-                </>
-            )}
-            {victory && (
-                <>
-                    <div className="text-green-500 text-xl">You won!</div>
-                    <button className="bg-blue-500 mt-4 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={(e) => {reset(e)}}>Play Again</button>
-                </>
-            )}
-        </div>
+    return (
+        <>
+            <div onKeyUp={onKeyUp} tabIndex={0} ref={gameWindow} className="focus:outline-none h-screen">
+                <Word letterArray={wordArray} guessArray={guessedLetters} />
+                <Hangman try={failedAttempts} />
+                {(() => {
+                    switch (status) {
+                        case GameStatus.InProgress:
+                            return <div className="text-center text-2xl">
+                                <p>Guess the word!</p>
+                                <Button buttonText="Reset" handleClick={handleClick} />
+                            </div>
+                        case GameStatus.Victory:
+                            return <div className="text-center text-2xl">
+                                <p className="text-green-600">You win!</p>
+                                <Button buttonText="Play Again" handleClick={handleClick} />
+                            </div>
+                        case GameStatus.Defeat:
+                            return <div className="text-center text-2xl">
+                                <p className="text-red-600">You lose. The word was <span className="underline">{wordArray}.</span></p>
+                                <Button buttonText="Try Again" handleClick={handleClick} />
+                            </div>
+                    }
+                })()}
+            </div>
+        </>
     )
 }
