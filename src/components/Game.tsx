@@ -24,7 +24,9 @@ export const Game = () => {
 
     return (
         <>
-            {status === GameStatus.InProgress && (
+            <div onKeyUp={onKeyUp} tabIndex={0} ref={gameWindow} className="focus:outline-none h-screen">
+                <Word letterArray={wordArray} guessArray={guessedLetters} inputGuess={inputGuess} />
+                {status === GameStatus.InProgress && (
                 <input
                     style={{ height: "0px", width: "0px", opacity: "0" }}
                     type="text"
@@ -32,8 +34,6 @@ export const Game = () => {
                     className="search_bar"
                     ref={searchRef} />
             )}
-            <div onKeyUp={onKeyUp} tabIndex={0} ref={gameWindow} className="focus:outline-none h-screen">
-                <Word letterArray={wordArray} guessArray={guessedLetters} inputGuess={inputGuess} />
                 <Hangman try={failedAttempts} />
                 {(() => {
                     switch (status) {
