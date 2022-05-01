@@ -8,7 +8,7 @@ interface ILetterProps {
 
 //create a function that will turn a string into an array of letters
 
-const Word = (props: ILetterProps) => {
+const Letter = (props: ILetterProps) => {
 
     return (
         <>
@@ -17,4 +17,4 @@ const Word = (props: ILetterProps) => {
     )
 }
 
-export default Word;
+export default Letter;

@@ -13,14 +13,19 @@ const GameLogic = () => {
 
 
     useEffect(() => {
-        gameWindow?.current?.focus();
+        gameWindow.current?.focus();
     }, [])
 
     useEffect(() => {
         if (wordArray.every(val => guessedLetters.includes(val)) && !!word) {
             setStatus(GameStatus.Victory);
         }
+        console.log(guessedLetters);
     }, [guessedLetters])
+
+    useEffect(() => {
+       console.log(word);
+    }, [word])
 
     useEffect(() => {
         if (failedAttempts >= 7) {
@@ -28,19 +33,17 @@ const GameLogic = () => {
         }
     }, [failedAttempts])
 
-    const onKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-        if (status == GameStatus.InProgress) {
-            let letter = event.key;
+    const makeGuess = (input:string) => {
+        if (status === GameStatus.InProgress) {
+            let letter = input.toLowerCase();
             if (guessedLetters.indexOf(letter) === -1) {
                 setGuessedLetters([...guessedLetters, letter]);
                 if (word.indexOf(letter) === -1) {
                     setFailedAttempts(failedAttempts + 1);
-
                 }
-            }
+            }         
         }
     }
-
     const resetGame = () => {
         setWord(RandomWords.data[Math.floor(Math.random() * RandomWords.data.length)]);
         setGuessedLetters([]);
@@ -48,7 +51,7 @@ const GameLogic = () => {
         setStatus(GameStatus.InProgress);
         gameWindow?.current?.focus();
     }
-    return {resetGame, onKeyUp, gameWindow, guessedLetters, wordArray, status, failedAttempts};
+    return {resetGame, makeGuess, gameWindow, guessedLetters, wordArray, status, failedAttempts};
 
 }
 
