@@ -58,7 +58,7 @@ export const Game = () => {
                             }}
                             buttonTheme={[{
                                 class: "hg-red",
-                                buttons: guessedLetters.join(' ').toString() ?? '{space}'
+                                buttons: (guessedLetters.join(' ') == '') ? '{space}' : guessedLetters.join(' ')
                             }]} />
                     </div>
                 )}
