@@ -16,10 +16,6 @@ export const Game = () => {
         resetGame();
     }
 
-    useEffect(() => {
-        console.log(guessedLetters);
-    }, [guessedLetters])
-
     const uppercaseGuesses: any = () => 
     {
         guessedLetters.map(letter => letter.toUpperCase());
@@ -62,7 +58,7 @@ export const Game = () => {
                             }}
                             buttonTheme={[{
                                 class: "hg-red",
-                                buttons: guessedLetters.join(' ').toString()
+                                buttons: guessedLetters.join(' ').toString() ?? '{space}'
                             }]} />
                     </div>
                 )}

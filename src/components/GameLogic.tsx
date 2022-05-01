@@ -4,7 +4,7 @@ import RandomWords from "../data/words.json"
 
 
 const GameLogic = () => {
-    const [word, setWord] = useState(RandomWords.data[Math.floor(Math.random() * RandomWords.data.length)]);
+    const [word, setWord] = useState(RandomWords.data[Math.floor(Math.random() * RandomWords.data.length)].toUpperCase());
     const wordArray: string[] = word.split("");
     const [status, setStatus] = useState(GameStatus.InProgress);
     const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
@@ -44,7 +44,7 @@ const GameLogic = () => {
         }
     }
     const resetGame = () => {
-        setWord(RandomWords.data[Math.floor(Math.random() * RandomWords.data.length)]);
+        setWord(RandomWords.data[Math.floor(Math.random() * RandomWords.data.length)].toUpperCase());
         setGuessedLetters([]);
         setFailedAttempts(0);
         setStatus(GameStatus.InProgress);
