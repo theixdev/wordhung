@@ -20,7 +20,6 @@ const GameLogic = () => {
         if (wordArray.every(val => guessedLetters.includes(val)) && !!word) {
             setStatus(GameStatus.Victory);
         }
-        console.log(guessedLetters);
     }, [guessedLetters])
 
     useEffect(() => {
@@ -35,7 +34,7 @@ const GameLogic = () => {
 
     const makeGuess = (input:string) => {
         if (status === GameStatus.InProgress) {
-            let letter = input.toLowerCase();
+            let letter = input.toUpperCase();
             if (guessedLetters.indexOf(letter) === -1) {
                 setGuessedLetters([...guessedLetters, letter]);
                 if (word.indexOf(letter) === -1) {

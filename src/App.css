@@ -32,13 +32,14 @@
   color: white;
 }
 
-.hg-button {
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(3, 25, 54, 0.969);
+.hg-button.hg-standardBtn.hg-red {
+  background: rgba(59, 5, 76, 0.8);
   color: white;
+}
+			 
+.hg-button.hg-standardBtn.hg-highlight {
+  box-shadow: 0px 0px 40px 5px rgba(255, 255, 0, 0.5);
+  z-index: 1;
 }
 
 .buttonalt {

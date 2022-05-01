@@ -4,16 +4,27 @@ import Word from "./Word";
 import Button from "././Button";
 import { GameStatus } from "../types/Enums";
 import GameLogic from "./GameLogic";
-import Keyboard, { KeyboardElement, KeyboardHandlerEvent, SimpleKeyboard } from 'react-simple-keyboard';
+import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 
 export const Game = () => {
 
     const { resetGame, makeGuess, gameWindow, guessedLetters, wordArray, status, failedAttempts } = GameLogic();
-
+    
     const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
         resetGame();
+    }
+
+    useEffect(() => {
+        console.log(guessedLetters);
+    }, [guessedLetters])
+
+    const uppercaseGuesses: any = () => 
+    {
+        guessedLetters.map(letter => letter.toUpperCase());
+        console.log(guessedLetters.join(' ').toString());
+        return guessedLetters.join(' ').toString();
     }
 
     return (
@@ -40,18 +51,18 @@ export const Game = () => {
                     }
                 })()}
                 {status === GameStatus.InProgress && (
-                    <div className="max-w-[370px] w-full mx-auto mt-auto md:mt-4 pt-2 ">
-                        <Keyboard class="keyboard" onKeyPress={makeGuess} layoutName="alphabet" theme={"hg-theme-default myTheme1"} 
+                    <div className="max-w-[370px] w-full mx-auto mb-12 mt-auto md:mt-4 pt-2 ">
+                        <Keyboard class="keyboard" onKeyPress={makeGuess} layoutName="alphabet" theme={"hg-theme-default myTheme1"}
                             layout={{
                                 'alphabet': [
                                     'Q W E R T Y U I O P',
                                     'A S D F G H J K L ',
-                                    'Z X C V B N M {enter}',
+                                    'Z X C V B N M ',
                                 ]
-                            }} 
+                            }}
                             buttonTheme={[{
-                                class: "buttonalt",
-                                buttons: "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"
+                                class: "hg-red",
+                                buttons: guessedLetters.join(' ').toString()
                             }]} />
                     </div>
                 )}
