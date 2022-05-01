@@ -30,13 +30,13 @@ const Hangman = (props: IHangmanProps) => {
                         </>
                     )
                     }
-                    {(props.try > 0 || props.gameStatus == GameStatus.Victory) && <ellipse className="st1 try1" cx="146.34" cy="91.17" rx="27.11" ry="23.48" />}
-                    {(props.try > 1 || props.gameStatus == GameStatus.Victory) && <path className="st1 try2 " d="M-129.13,136.35" />}
-                    {(props.try > 2 || props.gameStatus == GameStatus.Victory) && <path className="st1 try3" d="M146.34,162.05c0-15.8,0-31.6,0-47.4" />}
-                    {(props.try > 3 || props.gameStatus == GameStatus.Victory) && <path className="st1 try4" d="M127.19,200.45c6.38-13.24,12.77-26.47,19.15-39.71" />}
-                    {(props.try > 4 || props.gameStatus == GameStatus.Victory) && <path className="st1 try5" d="M179.23,194.87c-10.96-11.38-21.93-22.75-32.89-34.13" />}
-                    {(props.try > 5 || props.gameStatus == GameStatus.Victory) && <path className="st1 try6" d="M119.23,122.44c9.26,2.62,18.52,5.25,27.78,7.87" />}
-                    {(props.try > 6 || props.gameStatus == GameStatus.Victory) && <path className="st1 try7" d="M146.02,130.31c9.14-3.01,18.29-6.02,27.43-9.02" />}
+                    {(props.try > 0 || props.gameStatus === GameStatus.Victory) && <ellipse className="st1 try1" cx="146.34" cy="91.17" rx="27.11" ry="23.48" />}
+                    {(props.try > 1 || props.gameStatus === GameStatus.Victory) && <path className="st1 try2 " d="M-129.13,136.35" />}
+                    {(props.try > 2 || props.gameStatus === GameStatus.Victory) && <path className="st1 try3" d="M146.34,162.05c0-15.8,0-31.6,0-47.4" />}
+                    {(props.try > 3 || props.gameStatus === GameStatus.Victory) && <path className="st1 try4" d="M127.19,200.45c6.38-13.24,12.77-26.47,19.15-39.71" />}
+                    {(props.try > 4 || props.gameStatus === GameStatus.Victory) && <path className="st1 try5" d="M179.23,194.87c-10.96-11.38-21.93-22.75-32.89-34.13" />}
+                    {(props.try > 5 || props.gameStatus === GameStatus.Victory) && <path className="st1 try6" d="M119.23,122.44c9.26,2.62,18.52,5.25,27.78,7.87" />}
+                    {(props.try > 6 || props.gameStatus === GameStatus.Victory) && <path className="st1 try7" d="M146.02,130.31c9.14-3.01,18.29-6.02,27.43-9.02" />}
                 </svg>
             </div>
         </div>
