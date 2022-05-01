@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes, useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Hangman from "./Hangman";
 import Word from "./Word";
 import RandomWords from "../data/words.json"
