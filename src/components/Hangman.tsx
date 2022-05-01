@@ -53,8 +53,8 @@ const Hangman = (props: IHangmanProps) => {
                         {props.gameStatus === GameStatus.Victory && (
                             <> 
                             <path className="st6 tongue" d="M171.8,100.1c-0.7,3.2-9.3,7.6-13.7,7c-5.2-0.7-7.6-10.1-1.5-9.4C161.8,98.3,172.2,97.8,171.8,100.1z"/>
-                                <circle className="winningeyes" cx="156.3" cy="80" r="3.4"/>
-                                <circle className="winningeyes" cx="173" cy="83.4" r="3.4"/>
+                                <circle className="winningeyes" cx="156.3" cy="80" r="3.4" fill="#000000"/>
+                                <circle className="winningeyes" cx="173" cy="83.4" r="3.4" fill="#000000"/>
                              </>
                         )}
                 </svg>
