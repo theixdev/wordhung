@@ -32,7 +32,7 @@ export const Game = () => {
                     className="search_bar"
                     ref={searchRef} />
                 <Word letterArray={wordArray} guessArray={guessedLetters} inputGuess={inputGuess} />
-                <Hangman try={failedAttempts} />
+                <Hangman try={failedAttempts} gameStatus={status} />
                 {(() => {
                     switch (status) {
                         case GameStatus.InProgress:
