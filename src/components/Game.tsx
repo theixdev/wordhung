@@ -10,7 +10,6 @@ import 'react-simple-keyboard/build/css/index.css';
 export const Game = () => {
 
     const { resetGame, onKeyUp, gameWindow, guessedLetters, wordArray, status, failedAttempts } = GameLogic();
-    const searchRef = useRef<HTMLInputElement>(null);
 
     const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
