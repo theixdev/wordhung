@@ -1,4 +1,5 @@
 import React from "react";
+import Confetti from 'react-confetti'
 import { GameStatus } from '../types/Enums';
 
 interface IHangmanProps {
@@ -15,6 +16,7 @@ const Hangman = (props: IHangmanProps) => {
 
     return (
         <div className="scale-75 flex">
+            {props.gameStatus === GameStatus.Victory && <Confetti /> }
             <div className={`m-auto`}>
                 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                     viewBox="0 0 230.1 276.23" width="auto" height="auto">
