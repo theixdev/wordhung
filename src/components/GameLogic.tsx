@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { GameStatus } from '../types/Enums';
 import RandomWords from "../data/words.json"
+import './Hangman.css';
 
 
 const GameLogic = () => {

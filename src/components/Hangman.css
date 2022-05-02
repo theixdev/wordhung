@@ -1,0 +1,52 @@
+.gallow {
+    fill: #936226;
+    stroke: #000000;
+    stroke-width: 5;
+    stroke-miterlimit: 10;
+  }
+  
+  .rope {
+    fill: #F4EB38;
+    stroke: #000000;
+    stroke-miterlimit: 10;
+  }
+  
+  .head {
+    fill: #F8DFEC;
+    stroke: #000000;
+    stroke-width: 3;
+    stroke-miterlimit: 10;
+  }
+  
+  .deadface {
+    fill: none;
+    stroke: #000000;
+    stroke-width: 0.75;
+    stroke-miterlimit: 10;
+  }
+  
+  .winningeyes {
+    fill: #000000;
+    stroke: #000000;
+    stroke-width: 3;
+    stroke-miterlimit: 10;
+  }
+  
+  .tongue {
+    fill: #D31E3E;
+    stroke: #000000;
+    stroke-width: 0.75;
+    stroke-miterlimit: 10;
+  }
+
+  .swing {
+    animation: swing ease-in-out 1s infinite alternate;
+    transform-origin: center -20px;
+    float:left;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+}
+
+@keyframes swing {
+    0% { transform: rotate(3deg); }
+    100% { transform: rotate(-3deg); }
+}

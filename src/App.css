@@ -104,44 +104,4 @@ html {
 }
 
 
-.gallow {
-  fill: #936226;
-  stroke: #000000;
-  stroke-width: 5;
-  stroke-miterlimit: 10;
-}
-
-.rope {
-  fill: #F4EB38;
-  stroke: #000000;
-  stroke-miterlimit: 10;
-}
-
-.head {
-  fill: #F8DFEC;
-  stroke: #000000;
-  stroke-width: 3;
-  stroke-miterlimit: 10;
-}
-
-.st5 {
-  fill: none;
-  stroke: #000000;
-  stroke-width: 0.75;
-  stroke-miterlimit: 10;
-}
-
-.winningeyes {
-  fill: #000000;
-  stroke: #000000;
-  stroke-width: 3;
-  stroke-miterlimit: 10;
-}
-
-.tongue {
-  fill: #D31E3E;
-  stroke: #000000;
-  stroke-width: 0.75;
-  stroke-miterlimit: 10;
-}
 
